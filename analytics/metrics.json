@@ -13,5 +13,20 @@
         "allocated_budget": 48.67
       }
     ]
+  },
+  {
+    "timestamp": "2026-01-30T23:05:12.272182",
+    "ranked_posts": [
+      {
+        "post_id": 0,
+        "score": 1.4776746913597198,
+        "allocated_budget": 51.33
+      },
+      {
+        "post_id": 1,
+        "score": 1.400871548671034,
+        "allocated_budget": 48.67
+      }
+    ]
   }
 ]
