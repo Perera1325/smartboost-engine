@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List
 import numpy as np
+import json
+from datetime import datetime
 
 router = APIRouter()
 
@@ -10,11 +12,12 @@ class RankRequest(BaseModel):
     users: List[List[float]]
     total_budget: float = 100.0
 
-# Simple weight vector (acts like ML model)
 WEIGHTS = np.array([0.6, 0.4, 0.7, 0.3])
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
+
+METRICS_FILE = "../analytics/metrics.json"
 
 @router.post("/rank")
 def rank_posts(data: RankRequest):
@@ -39,15 +42,29 @@ def rank_posts(data: RankRequest):
             "score": float(combined_score)
         })
 
-    # Sort posts by score
     ranked = sorted(post_scores, key=lambda x: x["score"], reverse=True)
 
     total_score = sum(p["score"] for p in ranked)
 
-    # Allocate boost budget proportionally
     for p in ranked:
         p["allocated_budget"] = round((p["score"] / total_score) * data.total_budget, 2)
 
-    return {
+    # Save metrics
+    record = {
+        "timestamp": datetime.now().isoformat(),
         "ranked_posts": ranked
     }
+
+    with open(METRICS_FILE, "r+") as f:
+        data_json = json.load(f)
+        data_json.append(record)
+        f.seek(0)
+        json.dump(data_json, f, indent=2)
+
+    return {"ranked_posts": ranked}
+
+
+@router.get("/metrics")
+def get_metrics():
+    with open(METRICS_FILE) as f:
+        return json.load(f)

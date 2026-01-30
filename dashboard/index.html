@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartBoost Dashboard</title>
+</head>
+<body>
+<h2>SmartBoost Analytics</h2>
+<button onclick="load()">Load Metrics</button>
+<pre id="out"></pre>
+
+<script>
+function load(){
+ fetch("http://127.0.0.1:8000/metrics")
+ .then(r=>r.json())
+ .then(d=>{
+   document.getElementById("out").textContent =
+     JSON.stringify(d,null,2)
+ })
+}
+</script>
+</body>
+</html>
