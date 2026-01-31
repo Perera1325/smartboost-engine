@@ -19,6 +19,9 @@ WEIGHTS = np.array([0.6, 0.4, 0.7, 0.3])
 
 METRICS_FILE = "../analytics/metrics.json"
 
+ALERTS_FILE = "../alerts/alerts.json"
+
+
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
@@ -76,6 +79,19 @@ async def rank_posts(
         json.dump(data_json, f, indent=2)
 
     return {"ranked_posts": ranked}
+
+
+@router.get("/alerts")
+async def get_alerts(
+    request: Request,
+    auth=Depends(verify_key)
+):
+    await log_request(request)
+    check_rate(request.client.host)
+
+    with open(ALERTS_FILE) as f:
+        return json.load(f)
+
 
 
 @router.get("/metrics")
