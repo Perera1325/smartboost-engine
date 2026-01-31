@@ -1,130 +1,180 @@
-\# SmartBoost Engine
+# 🚀 SmartBoost Engine
 
+An ML-inspired content ranking, boost optimization, analytics, and SOC-style alert platform.
 
+Built as a full backend system demonstrating:
 
-ML-driven content ranking and boost optimization API inspired by Meta-style feed ranking systems.
+- Machine Learning scoring
+- Ranking + budget optimization
+- Analytics dashboard
+- API security
+- Rate limiting
+- Request logging
+- Anomaly detection (SOC alerts)
 
-
+Inspired by Meta-style feed ranking and WSO2 API security concepts.
 
 ---
 
+## ✨ Features
+
+### Core
+- Post ranking using sigmoid ML scoring
+- Boost budget allocation
+- REST API (FastAPI)
+
+### Analytics
+- Metrics storage
+- Ranking history
+- Dashboard viewer
+
+### Security
+- API Key authentication
+- Rate limiting
+- Request logging
+
+### SOC
+- High boost anomaly detection
+- Alert storage
+- Alerts API
+
+---
+
+## 🏗 Architecture
+
+See: docs/architecture.txt
+
+---
+
+## 📁 Project Structure
+
+  smartboost-engine/
+│
+├── app/
+│ ├── main.py
+│ ├── routes.py
+│ └── security.py
+│
+├── analytics/
+│ ├── metrics.json
+│ └── requests.log
+│
+├── alerts/
+│ └── alerts.json
+│
+├── dashboard/
+│ └── index.html
+│
+├── docs/
+│ └── architecture.txt
+│
+└── README.md
+
+ 
+---
+
+## ▶ How to Run
+
+### 1. Install
+
+```bash
+pip install fastapi uvicorn numpy
+  
 
 
-\## 🚀 Day 01 – Foundation
+2. Start Server
+cd app
+uvicorn main:app --reload
 
 
+Open:
 
-\### Completed
+http://127.0.0.1:8000/docs
 
+🔐 API Key
 
+Use this header for all endpoints:
 
-\- Professional project structure
+x-api-key: smartboost123
 
-\- FastAPI backend setup
+📡 Endpoints
 
-\- Typed REST endpoint using Pydantic
+POST /rank
+GET /metrics
+GET /alerts
 
-\- Matrix-based ranking prototype (NumPy)
-
-\- Swagger OpenAPI documentation
-
-\- Local development server
-
-
-
-\### API
-
-
-
-POST /rank  
-
-Accepts post feature matrix and user feature matrix.  
-
-Returns ranking score matrix.
-
-
-
-\### Example Request
-
-
-
-```json
-
+🧪 Example Request
 {
-
-&nbsp; "posts": \[\[1,2,3],\[4,5,6]],
-
-&nbsp; "users": \[\[1,0,1],\[0,1,1]]
-
+  "posts": [[1,0],[0,1]],
+  "users": [[1,1],[0,0]],
+  "total_budget": 100
 }
 
-Tech Stack
+🎯 Educational Objective
 
-Python
+This project demonstrates:
 
+ML-style ranking systems
 
+Optimization pipelines
 
-FastAPI
+Backend security
 
+SOC alerting concepts
 
+API Gateway thinking
 
-NumPy
+Built as a learning project aligned with enterprise platforms such as WSO2.
 
+👨‍💻 Author
 
-
-Pydantic
-
-
-
-Uvicorn
-
-
-
-Vision
-
-Build an intelligent content ranking + budget optimization platform combining:
-
-
-
-Machine Learning ranking
-
-
-
-Feature engineering
-
-
-
-Optimization algorithms
-
-
-
-API Gateway integration (WSO2 style)
-
-
-
-Real-time analytics
-
-
-
-Future phases will include ML models, budget allocation, dashboards, and OAuth security.
-
-
-
+Vinod Perera
+Dual Degree Undergraduate (Computer Science + Electrical & Electronic Engineering)
 
 
 Save.
 
-
-
 ---
 
+## 🌐 STEP 3 — Dashboard polish (optional)
+
+Open:
+
+👉 `dashboard/index.html`
+
+Change title line:
+
+```html
+<h2>SmartBoost SOC Dashboard</h2>
 
 
-\## ✅ Step 4 — Git Add
 
 
 
-```bash
 
-git add .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,32 @@
+SmartBoost Engine Architecture
+
+Client (Swagger / Dashboard)
+        |
+        v
+FastAPI Backend
+  |
+  +-- Security Layer
+  |     - API Key Auth
+  |     - Rate Limiting
+  |     - Request Logging
+  |
+  +-- Ranking Engine
+  |     - Feature Vector Builder
+  |     - Sigmoid ML Scoring
+  |     - Post Ranking
+  |     - Budget Allocation
+  |
+  +-- Analytics Engine
+  |     - metrics.json
+  |
+  +-- Alert System
+        - HIGH_BOOST detection
+        - alerts.json
+
+Storage:
+ - analytics/metrics.json
+ - alerts/alerts.json
+ - analytics/requests.log
+
+Dashboard:
+ - dashboard/index.html
